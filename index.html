@@ -1,95 +1,97 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redireccionador por ID</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: #f4f4f4;
-    }
-    h1 {
-      color: #333;
-    }
-    input {
-      padding: 12px;
-      font-size: 18px;
-      width: 250px;
-      border: 2px solid #007bff;
-      border-radius: 8px;
-      margin: 20px;
-    }
-    button {
-      padding: 12px 25px;
-      font-size: 18px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    #mensaje {
-      margin-top: 20px;
-      color: red;
-    }
-  </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320">
+    <title>Redireccionador 3DS</title>
+    
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            background: #f0f0f0;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+        input {
+            width: 260px;
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #0066cc;
+            border-radius: 6px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #004499;
+        }
+        #mensaje {
+            margin-top: 20px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <h1>Redireccionador por ID</h1>
-  <p>Escribe el ID y presiona Enter o el botón</p>
-  
-  <input type="text" id="idInput" placeholder="Ej: 12345" autofocus>
-  <br>
-  <button onclick="redirigir()">Ir al enlace</button>
-  
-  <div id="mensaje"></div>
 
-  <script>
-    // ==================== CONFIGURA TUS ENLACES AQUÍ ====================
-    const enlaces = {
-      "1": "https://google.com",
-      "2": "https://youtube.com",
-      "123": "https://catbox.moe",
-      "abc": "https://example.com",
-      "meme1": "https://i.imgur.com/abc123.png",
-      "video": "https://www.youtube.com/watch?v=dQw4w9wgxcq",
-      // Agrega más aquí ↓
-      // "id": "https://tudominio.com/archivo"
-    };
-    // =================================================================
+    <h1>Redireccionador por ID</h1>
+    <p>Escribe el ID:</p>
+    
+    <input type="text" id="idInput" placeholder="Ejemplo: 123" autofocus>
+    <br><br>
+    <button onclick="redirigir()">Ir al enlace</button>
+    
+    <div id="mensaje"></div>
 
-    function redirigir() {
-      const input = document.getElementById("idInput");
-      const id = input.value.trim().toLowerCase();
-      const mensaje = document.getElementById("mensaje");
+    <script type="text/javascript">
+        const enlaces = {
+            "1": "https://google.com",
+            "2": "https://youtube.com",
+            "123": "https://catbox.moe",
+            "abc": "https://example.com",
+            "meme": "https://i.imgur.com/abc123.png",
+            // Agrega aquí tus IDs y enlaces
+        };
 
-      if (id === "") {
-        mensaje.textContent = "Por favor escribe un ID";
-        return;
-      }
+        function redirigir() {
+            var input = document.getElementById("idInput");
+            var id = input.value.trim().toLowerCase();
+            var mensaje = document.getElementById("mensaje");
 
-      if (enlaces[id]) {
-        mensaje.textContent = "Redirigiendo...";
-        setTimeout(() => {
-          window.location.href = enlaces[id];
-        }, 500);
-      } else {
-        mensaje.textContent = `No se encontró ningún enlace para el ID: ${id}`;
-      }
-    }
+            if (id === "") {
+                mensaje.innerHTML = "Por favor escribe un ID";
+                return;
+            }
 
-    // Permitir presionar Enter
-    document.getElementById("idInput").addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-        redirigir();
-      }
-    });
-  </script>
+            if (enlaces[id]) {
+                mensaje.innerHTML = "Redirigiendo...";
+                setTimeout(function() {
+                    window.location.href = enlaces[id];
+                }, 600);
+            } else {
+                mensaje.innerHTML = "ID no encontrado";
+            }
+        }
+
+        // Presionar Enter
+        document.getElementById("idInput").onkeypress = function(e) {
+            if (e.key === "Enter") {
+                redirigir();
+            }
+        };
+    </script>
+
 </body>
 </html>
