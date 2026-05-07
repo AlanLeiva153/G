@@ -1,93 +1,23 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="es">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=320">
-    <title>Galeria</title>
-    
-    <style type="text/css">
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 40px 20px;
-            background: #f0f0f0;
-            margin: 0;
-        }
-        h1 {
-            color: #333;
-            font-size: 24px;
-        }
-        input {
-            width: 260px;
-            padding: 10px;
-            font-size: 18px;
-            border: 2px solid #0066cc;
-            border-radius: 6px;
-        }
-        button {
-            padding: 12px 30px;
-            font-size: 18px;
-            background: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            margin-top: 15px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #004499;
-        }
-        #mensaje {
-            margin-top: 20px;
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    <title>Redireccionador</title>
 </head>
 <body>
-
-    <h1>Redireccionador por ID</h1>
-    <img src='https://files.catbox.moe/8i62px.png' border='0' alt='The-Silver-Eyes-29-Portada-(1)'>
-    <p>Escribe el ID:</p>
-    
-    <input type="text" id="idInput" placeholder="Ejemplo: 123" autofocus>
+    <h1>Redireccionador 3DS</h1>
+    <input type="text" id="id" placeholder="Escribe ID" style="width:90%;padding:10px;font-size:18px;">
     <br><br>
-    <button onclick="redirigir()">Ir al enlace</button>
-    
-    <div id="mensaje"></div>
+    <button onclick="ir()" style="padding:10px 20px;font-size:18px;">Ir</button>
 
-    <script type="text/javascript">
-        const enlaces = {
-            "1": "https://i.postimg.cc/xjw60zWG/The-Silver-Eyes-29-Portada-(1).png",
-        };
-
-        function redirigir() {
-            var input = document.getElementById("idInput");
-            var id = input.value.trim().toLowerCase();
-            var mensaje = document.getElementById("mensaje");
-
-            if (id === "") {
-                mensaje.innerHTML = "Por favor escribe un ID";
-                return;
-            }
-
-            if (enlaces[id]) {
-                mensaje.innerHTML = "Redirigiendo...";
-                setTimeout(function() {
-                    window.location.href = enlaces[id];
-                }, 600);
-            } else {
-                mensaje.innerHTML = "ID no encontrado";
+    <script>
+        function ir() {
+            let id = document.getElementById("id").value.trim();
+            if (id) {
+                window.location.href = "viewer.html?id=" + id;
             }
         }
-
-        // Presionar Enter
-        document.getElementById("idInput").onkeypress = function(e) {
-            if (e.key === "Enter") {
-                redirigir();
-            }
-        };
     </script>
-
 </body>
 </html>
