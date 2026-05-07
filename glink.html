@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redireccionador por ID</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      padding: 12px;
+      font-size: 18px;
+      width: 250px;
+      border: 2px solid #007bff;
+      border-radius: 8px;
+      margin: 20px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #mensaje {
+      margin-top: 20px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Redireccionador por ID</h1>
+  <p>Escribe el ID y presiona Enter o el botón</p>
+  
+  <input type="text" id="idInput" placeholder="Ej: 12345" autofocus>
+  <br>
+  <button onclick="redirigir()">Ir al enlace</button>
+  
+  <div id="mensaje"></div>
+
+  <script>
+    // ==================== CONFIGURA TUS ENLACES AQUÍ ====================
+    const enlaces = {
+      "1": "https://google.com",
+      "2": "https://youtube.com",
+      "123": "https://catbox.moe",
+      "abc": "https://example.com",
+      "meme1": "https://i.imgur.com/abc123.png",
+      "video": "https://www.youtube.com/watch?v=dQw4w9wgxcq",
+      // Agrega más aquí ↓
+      // "id": "https://tudominio.com/archivo"
+    };
+    // =================================================================
+
+    function redirigir() {
+      const input = document.getElementById("idInput");
+      const id = input.value.trim().toLowerCase();
+      const mensaje = document.getElementById("mensaje");
+
+      if (id === "") {
+        mensaje.textContent = "Por favor escribe un ID";
+        return;
+      }
+
+      if (enlaces[id]) {
+        mensaje.textContent = "Redirigiendo...";
+        setTimeout(() => {
+          window.location.href = enlaces[id];
+        }, 500);
+      } else {
+        mensaje.textContent = `No se encontró ningún enlace para el ID: ${id}`;
+      }
+    }
+
+    // Permitir presionar Enter
+    document.getElementById("idInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        redirigir();
+      }
+    });
+  </script>
+</body>
+</html>
